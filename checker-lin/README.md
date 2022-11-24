@@ -30,7 +30,7 @@ mapped.
 * If the address is before file_size, then it copies either an entire page,
 or less than that if file_size is not a multiple of a page's size, from the
 source file.
-* Finally it sets the permissions for the newly mapped page.
+* Finally, it sets the permissions for the newly mapped page.
 * If the fault's address was not found in any segment, the original
 handler is used.
 
