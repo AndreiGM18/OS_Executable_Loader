@@ -34,7 +34,7 @@ source file.
 * If the fault's address was not found in any segment, the original
 handler is used.
 
-### Compilation and usage
+### Compilation and usage:
 * In order to compile, we use:
 ```
 make
