@@ -1,13 +1,22 @@
 **Name: Mitran Andrei-Gabriel**
 **Group: 323CA**
 
-## Executable Loader (Homework #1)
+## Homework #1 (Executable Loader)
 
-### Description:
-
+### Organization:
 * This project aims to create an executable loader.
 * Everything is provided by the OS team, with the exception of the signal
 handler. As such, this README is going to mainly talk about said handler.
+* This homework helped me to better understand virtual memory allocation.
+* Further improvements can be made, perhaps by actually providing mmap with
+the fd and offset from the start or by allocating memory for the data void *
+of each segment before searching for the page fault (maybe in the so_execute
+function). Further details about the implementation are provided below.
+
+### Implementation:
+* The handler handles the SIGSEGV signal, in all given cases.
+* I decided to use the DIE macro, as I have seen it used numerous times in the
+lab, for defensive programming (I have also used it during my first year).
 * After getting the page fault's address, the handler loops through the
 segments searching for it.
 * It first checks if the data void* has been allocated. It is used to tell if
@@ -25,16 +34,14 @@ source file.
 * If the fault's address was not found in any segment, the original
 handler is used.
 
-### Comments:
-* I decided to use the DIE macro, as I have seen it used numerous times in the
-lab, for defensive programming (I have also used it during my first year).
-* This homework helped me to better understand virtual memory allocation.
-* Further improvements can be made, perhaps by actually providing mmap with
-the fd and offset from the start or by allocating memory for the data void *
-of each segment before searching for the page fault (maybe in the so_execute
-function).
+### Compiltion and usage
+* In order to compile, we use:
+```
+make
+```
+* The handler is only used when receiving SIGSEGV.
 
 ### Resources:
 * Everything provided by the OS team
-* (https://www.man7.org/linux/man-pages/index.html)
+* [Linux Manual](https://www.man7.org/linux/man-pages/index.html)
 
