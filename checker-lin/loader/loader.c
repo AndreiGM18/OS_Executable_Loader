@@ -68,7 +68,7 @@ static void segv_handler(int signum, siginfo_t *info, void *context)
 		/* Checking if the page has already been mapped */
 		if (((char *)segment->data)[page_cnt] != 0) {
 			/* The original handler is called, permissions are invalid */
-			signal(SIGSEGV, NULL);
+			signal(SIGSEGV, SIG_DFL);
 
 			return;
 		}
@@ -107,7 +107,7 @@ static void segv_handler(int signum, siginfo_t *info, void *context)
 	}
 
 	/* The fault was not found in the segments, so the default handler is called */
-	signal(SIGSEGV, NULL);
+	signal(SIGSEGV, SIG_DFL);
 }
 
 int so_init_loader(void)
